@@ -91,13 +91,17 @@ feature_scores <- feature_scores %>%
   transform(log_ratio_EU_US = log( EU / US)) %>% # create col for log of EU/US score ratio
   arrange(ratio_EU_US) # sort features by ascending EU/US score ratio
 
-
-
+# make a new dataframe to visualize the distribution of logged score ratios
+# this can be deleted
+feature_scores_ranked <- mutate(feature_scores, rank = order(ratio_EU_US))
 # plot
-ggplot(feature_scores, aes(x=log_ratio_EU_US, y = rank)) + geom_point() # not log
+ggplot(feature_scores_ranked, aes(x=log_ratio_EU_US, y = rank)) + geom_point() 
 
-#ggplot(f_scores_sort, aes(x=diff_EU_US, y = features)) + geom_point()
-
+# this is basically a histogram
+# it shows us that about 6000 of the words don't have much variation
+# and about 4500 don't vary at all between the documents
+# it also shows us that the dataset is biased towards EU documents
+# should we offset it to accomodate for this? 
 
 
 
