@@ -1,0 +1,217 @@
+---
+title: "Attempt to import legislation"
+author: "Will Lowe"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    fig_width: 7
+    fig_height: 7 
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = NA)
+library(tidyverse)
+library(quanteda)
+library(quanteda.textmodels)
+library(data.table)
+library(ggplot2)
+library(ggrepel)
+library(readtext) # for getting document and their info into a data frame 
+
+#COURSE <- "~iqmr" # where we keep all the course data
+
+# similar method: http://varianceexplained.org/r/trump-tweets/
+```
+
+## Constructing corpora from plain text files
+
+
+```{r}
+# create five column dataframe ("leg_all") of: 
+# 1. file name, 2. title (abb.), 3. text, 4. year, 5. jurisdiction
+
+# import folder of documents "text_leg" 
+# note: must be stored in current working directory when running file
+leg_all <- readtext("text_leg/", 
+                docvarsfrom = "filenames", # file name becomes "doc_id"
+                docvarnames = c("title", "year", "jurisdiction")) # title (abb.), year, and jurisdiction are extracted from file name
+
+# remove file name ("doc_id") column and rearrange column order
+leg_all <- select(leg_all, title, jurisdiction, year, text, -doc_id) 
+
+# preview of newly created dataframe
+head(leg_all) 
+
+```
+
+
+
+```{r}
+# combine text into corpus dataframe ("corpdfm")
+# this provides frequency counts of how many time each word appears in each document
+corp <- corpus(leg_all, text_field = "text", docid_field = "title")
+corpdfm <- dfm(corp)
+
+# previous of the newly created word frequency corpus
+# note: "/" and #s are counted as words, but this doesn't matter for our purposes
+head(corpdfm)
+```
+
+```{r}
+# run naive-bayes classification model 
+# "jurisdiction" is set as the "training label"
+# "prior" probability is 50/50, meaning that the proportion of EU vs. US docs doesn't impact prediction (see "help(textmodel_nb)" for more information)
+
+leg_nb <- textmodel_nb(corpdfm, corpdfm$jurisdiction)
+summary(leg_nb)
+
+# estimated feature scores should be read in relation to eachother by word
+# e.g. the word "no" is 0.001373/0.001323 times more likely to indicate an EU than US doc
+```
+
+```{r}
+# "Naive Bayes can only take features into consideration that occur both in the training set and the test set, but we can make the features identical using dfm_match()"
+
+# demo
+#leg_nb[["x"]] #1980 is first EU legislation
+#test_df <- convert(leg_nb[["x"]], to = "data.frame") 
+#test_df # gives you count of word by legislation
+
+# extract feature scores from naive bayes output to make a new dataframe
+feature_scores <- t(as.data.frame(leg_nb[["param"]])) 
+feature_scores <- as.data.frame(feature_scores)
+
+
+# organize the feature (i.e., word) score table
+feature_scores <- feature_scores %>%
+  setDT(keep.rownames = TRUE) %>% # shift rownames to col 1
+  rename(features = rn) %>% # rename row name ("rn") col to "features"
+  transform(ratio_EU_US = EU / US) %>% # create col for EU/US score ratio
+  transform(ratio_US_EU = US / EU) %>% # create col for US/EU score ratio
+  transform(log_ratio_EU_US = log( EU / US)) %>% # create col for log of EU/US score ratio
+  arrange(ratio_EU_US) # sort features by ascending EU/US score ratio
+
+
+
+# plot
+ggplot(feature_scores, aes(x=log_ratio_EU_US, y = rank)) + geom_point() # not log
+
+#ggplot(f_scores_sort, aes(x=diff_EU_US, y = features)) + geom_point()
+
+
+
+
+```
+
+```{r}
+testwords <- c("environment", "human", "health", "wellbeing", "climate", "cancer", "air", "health-protection", "health-care", "healthcare", "disease", "science", "lung", "prevention", "prevent", "preventive") # see if "preventative" ever used in docs
+
+
+#filter out the big list of word scores to just the words
+#that we selected in "testwords"
+testscores <- arrange(filter(fss_test, features %in% testwords),
+                      log_ratio_EU_US)
+
+
+testscores %>%
+  mutate(features = reorder(features, log_ratio_EU_US)) %>%
+  ggplot(aes(features, log_ratio_EU_US, fill = log_ratio_EU_US < 0)) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  ylab("EU / US log ratio") + # log of the liklihood of this word being in an EU doc vs. a US doc
+  xlab("Words found in legislation") +
+  scale_fill_manual(name = "Word is more suggestive of", labels = c("EU Legislation", "US Legislation"), values = c("light blue", "coral"))
+```
+
+
+```{r}
+wfish <- textmodel_wordfish(corpdfm, dir = c(15, 4)) #update based on leg_all global environment
+summary(wfish)
+# beta is the "position" of the word (ideologically speaking)
+# you don't know which direction beta goes,  
+# (can guess that "rights" is R) so we figure this out next
+# psi gives you frequency
+
+```
+
+
+
+
+
+
+```{r}
+preds  <- predict(wfish, interval = "confidence")
+
+# grab the (only) internal element 'fit' and make it a data frame
+preds <- as_tibble(preds$fit)
+#bind the columns together and give an ordering
+preds_dv <- mutate(bind_cols(docvars(corpdfm), preds),
+                   leg_order = rank(fit)) # add a left to right ordering
+
+ #gets rid of gray ggplot background
+theme_set(theme_minimal())
+
+#y is speaker order, color by party
+ggplot(preds_dv, aes(x = fit, xmin = lwr, xmax = upr,
+                     y = leg_order, col = jurisdiction)) + #can also do year
+  geom_point() +
+  geom_errorbarh(height = 0) +
+  #scale_color_manual(values = c("blue", "red")) +
+  scale_y_continuous(labels = preds_dv$doc_id,
+                     minor_breaks = NULL,
+                     breaks = preds_dv$leg_order) +
+  labs(x = "Sorting", y = "Legislation") +
+  ggtitle("Air Legislation",
+          subtitle = "Sorted based on legislation text")
+```
+
+```{r}
+#position is the only thing that the model is looking at
+
+#let's find out why feinstein is -2... 
+#features means words; calling beta the score and psi 
+# the offset (ie word frequency) for help
+wscores <- tibble(word = wfish$features,
+                  score = wfish$beta,
+                  offset = wfish$psi)
+
+#testwords <- c("environment", "pollution", "wellbeing", "human", "health", "climate", "air", "proportionality", "federal", "member", "cancer", "motor", "nature", "smog", "acid", "rain", "vegetation", "agriculture", "ozone", "luxembourg", "smoke", "prevention", "preventive", "congress", "economic", "fossil-fuel")
+
+
+testwords <- c("environment", "human", "health", "wellbeing", "climate", "cancer", "air", "health-protection", "health-care", "healthcare", "disease", "science", "lung", "prevention", "prevent", "preventive")
+
+
+#filter out the big list of word scores to just the words
+#that we selected in "testwords"
+testscores <- arrange(filter(wscores, word %in% testwords),
+                      score)
+testscores
+# "score" brings position up or down
+
+
+
+```
+
+```{r}
+ggplot(wscores, aes(score, offset, label = word)) +
+  geom_point(color = "grey", alpha = 0.2) +
+  geom_text_repel(data = testscores, col = "black") +
+  geom_point(data = testscores) +
+  labs(x = "Word prediction score (rougly speaking: EU to left, US to the right)", y = "Offset parameter (~frequency)") +
+  ggtitle("Estimated Word Positions for Selected Debate Vocabulary",
+          subtitle = "Note: Offset parameter is roughly proportional to word frequency")
+# can see the layers at the bottom for words only used 1 or 2 times
+# high frequency words are more in the middle
+# as frequencies get lower, they have more of a pulling effect
+# aka the eiffel tower plot
+
+
+#show me in this corpurs, every instance of the word air
+#plus or minus 15 words (so i can see how used) and who said it
+# kwic(corp, "air", window = 15)
+# only two instances from boxer. 
+# drag the console larger to see whole script
+
+
+```
+

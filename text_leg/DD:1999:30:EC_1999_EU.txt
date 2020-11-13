@@ -1,0 +1,326 @@
+COUNCIL DIRECTIVE 1999/30/EC
+of 22 April 1999
+relating to limit values for sulphur dioxide, nitrogen dioxide and oxides of nitrogen, particulate matter and lead in ambient air
+
+THE COUNCIL OF THE EUROPEAN UNION,
+Having regard to the Treaty establishing the European Community, and in particular Article 130s(1) thereof,
+Having regard to the proposal from the Commission(1),
+Having regard to the opinion of the Economic and Social Committee(2),
+Acting in accordance with the procedure laid down in Article 189c of the Treaty(3),
+(1) Whereas, on the basis of principles enshrined in Article 130r of the Treaty, the European Community programme of policy and action in relation to the environment and sustainable development (the fifth Environment Action Programme)(4) envisages in particular amendments to legislation on air pollutants; whereas that programme recommends the establishment of long-term air-quality objectives;
+(2) Whereas Article 129 of the Treaty provides that health-protection requirements shall form a constituent part of the Community's other policies; whereas Article 3(o) of the Treaty provides that the activities of the Community shall include a contribution to the attainment of a high level of health protection;
+(3) Whereas, pursuant to Article 4(5) of Council Directive 96/62/EC of 27 September 1996 on ambient air quality assessment and management(5), the Council is to adopt the legislation provided for in paragraph 1 and the provisions laid down in paragraphs 3 and 4 of the same Article;
+(4) Whereas the limit values laid down in this Directive are minimum requirements; whereas, in accordance with Article 130t of the Treaty, Member States may maintain or introduce more stringent protective measures; whereas, in particular, stricter limit values may be introduced to protect the health of particularly vulnerable categories of the population, such as children and hospital patients; whereas a Member State may require that limit values be attained before the dates laid down in this Directive;
+(5) Whereas ecosystems should be protected against the adverse effects of sulphur dioxide; whereas vegetation should be protected against the adverse effects of oxides of nitrogen;
+(6) Whereas different types of particles can have different harmful effects on human health; whereas there is evidence that risks to human health associated with exposure to man-made particulate matter are higher than risks associated with exposure to naturally occurring particles in ambient air;
+(7) Whereas Directive 96/62/EC requires that action plans be developed for zones within which concentrations of pollutants in ambient air exceed limit values plus any temporary margins of tolerance applicable in order to ensure compliance with limit values by the date or dates laid down; whereas insofar as they relate to particulate matter such action plans and other reduction strategies should aim to reduce concentrations of fine particles as part of the total reduction in concentrations of particulate matter;
+(8) Whereas Directive 96/62/EC provides that the numerical values for limit values and alert thresholds are to be based on the findings of work carried out by international scientific groups active in the field; whereas the Commission is to take account of the most recent scientific-research data in the epidemiological and environmental fields concerned and of the most recent advances in metrology for re-examining the elements on which limit values and alert thresholds are based;
+(9) Whereas in order to facilitate the review of this Directive in 2003 the Commission and the Member States should consider encouraging research into the effects of the pollutants referred to herein, namely sulphur dioxide, nitrogen dioxide and oxides of nitrogen, particulate matter and lead;
+(10) Whereas standardised accurate measurement techniques and common criteria for the location of measuring stations are an important element in the assessment of ambient-air quality with a view to obtaining comparable information across the Community;
+(11) Whereas, in accordance with Article 12(1) of Directive 96/62/EC, the amendments necessary for adaptation to scientific and technical progress may relate solely to criteria and techniques for the assessment of concentrations of sulphur dioxide, nitrogen dioxide and oxides of nitrogen, particulate matter and lead or detailed arrangements for forwarding information to the Commission, and may not have the effect of modifying limit values or alert thresholds either directly or indirectly;
+(12) Whereas up-to-date information on concentrations of sulphur dioxide, nitrogen dioxide and oxides of nitrogen, particulate matter and lead in ambient air should be readily available to the public,
+HAS ADOPTED THIS DIRECTIVE:
+
+Article 1
+Objectives
+The objectives of this Directive shall be to:
+- establish limit values and, as appropriate, alert thresholds for concentrations of sulphur dioxide, nitrogen dioxide and oxides of nitrogen, particulate matter and lead in ambient air intended to avoid, prevent or reduce harmful effects on human health and the environment as a whole,
+- assess concentrations of sulphur dioxide, nitrogen dioxide and oxides of nitrogen, particulate matter and lead in ambient air on the basis of common methods and criteria,
+- obtain adequate information on concentrations of sulphur dioxide, nitrogen dioxide and oxides of nitrogen, particulate matter and lead in ambient air and ensure that it is made available to the public,
+- maintain ambient-air quality where it is good and improve it in other cases with respect to sulphur dioxide, nitrogen dioxide and oxides of nitrogen, particulate matter and lead.
+
+Article 2
+Definitions
+For the purposes of this Directive:
+1. "ambient air" shall mean outdoor air in the troposphere, excluding work places;
+2. "pollutant" shall mean any substance introduced directly or indirectly by man into the ambient air and likely to have harmful effects on human health and/or the environment as a whole;
+3. "level" shall mean the concentration of a pollutant in ambient air or the deposition thereof on surfaces in a given time;
+4. "assessment" shall mean any method used to measure, calculate, predict or estimate the level of a pollutant in the ambient air;
+5. "limit value" shall mean a level fixed on the basis of scientific knowledge, with the aim of avoiding, preventing or reducing harmful effects on human health and/or the environment as a whole, to be attained within a given period and not to be exceeded once attained;
+6. "alert threshold" shall mean a level beyond which there is a risk to human health from brief exposure and at which immediate steps shall be taken by the Member States as laid down in Directive 96/62/EC;
+7. "margin of tolerance" shall mean the percentage of the limit value by which this value may be exceeded subject to the conditions laid down in Directive 96/62/EC;
+8. "zone" shall mean part of their territory delimited by the Member States;
+9. "agglomeration" shall mean a zone with a population concentration in excess of 250000 inhabitants or, where the population concentration is 250000 inhabitants or less, a population density per km2 which for the Member States justifies the need for ambient air quality to be assessed and managed.
+10. "oxides of nitrogen" shall mean the sum of nitric oxide and nitrogen dioxide added as parts per billion and expressed as nitrogen dioxide in micrograms per cubic meter;
+11. "PM10" shall mean particulate matter which passes through a size-selective inlet with a 50 % efficiency cut-off at 10 μm aerodynamic diameter;
+12. "PM2,5" shall mean particulate matter which passes through a size-selective inlet with a 50 % efficiency cut-off at 2,5μm aerodynamic diameter;
+13. "upper assessment threshold" shall mean a level specified in Annex V, below which a combination of measurements and modelling techniques may be used to assess ambient-air quality, in accordance with Article 6(3) of Directive 96/62/EC;
+14. "lower assessment threshold" shall mean a level specified in Annex V, below which modelling or objective-estimation techniques alone may be used to assess ambient-air quality in accordance with Article 6(4) of Directive 96/62/EC;
+15. "natural events" shall mean volcanic eruptions, seismic activities, geothermal activities, wild-land fires, high-wind events or the atmospheric resuspension or transport of natural particles from dry regions;
+16. "fixed measurements" shall mean measurements taken in accordance with Article 6(5) of Directive 96/62/EC.
+
+Article 3
+Sulphur dioxide
+1. Member States shall take the measures necessary to ensure that concentrations of sulphur dioxide in ambient air, as assessed in accordance with Article 7, do not exceed the limit values laid down in Section I of Annex I from the dates specified therein.
+The margins of tolerance laid down in Section I of Annex I shall apply in accordance with Article 8 of Directive 96/62/EC.
+2. The alert threshold for concentrations of sulphur dioxide in ambient air shall be that laid down in Section II of Annex I.
+3. In order to assist the Commission in preparing the report provided for in Article 10, until 31 December 2003 Member States shall, where practicable, record data on concentrations of sulphur dioxide averaged over ten minutes from certain measuring stations which they have selected as representative of air quality in inhabited areas close to sources and at which hourly concentrations are measured. At the same time as data are supplied on hourly concentrations in accordance with Article 11(1) of Directive 96/62/EC, Member States shall report to the Commission, for those selected measuring stations, the number of ten-minute concentrations which have exceeded 500 μg/m3, the number of days within the calendar year on which that occurred, the number of those days on which hourly concentrations of sulphur dioxide simultaneously exceeded 350 μg/m3 and the maximum ten-minute concentration recorded.
+4. Member States may designate zones or agglomerations within which limit values for sulphur dioxide as laid down in Section I of Annex I are exceeded owing to concentrations of sulphur dioxide in ambient air due to natural sources. Member States shall send the Commission lists of any such zones or agglomerations together with information on concentrations and sources of sulphur dioxide therein. When informing the Commission in accordance with Article 11(1) of Directive 96/62/EC, Member States shall provide the necessary justification to demonstrate that any exceedances are due to natural sources.
+Within such zones or agglomerations Member States shall be obliged to implement action plans in accordance with Article 8(3) of Directive 96/62/EC only where the limit values laid down in Section I of Annex I are exceeded owing to man-made emissions.
+
+Article 4
+Nitrogen dioxide and oxides of nitrogen
+1. Member States shall take the measures necessary to ensure that concentrations of nitrogen dioxide and, where applicable, of oxides of nitrogen, in ambient air, as assessed in accordance with Article 7, do not exceed the limit values laid down in Section I of Annex II as from the dates specified therein.
+The margins of tolerance laid down in Section I of Annex II shall apply in accordance with Article 8 of Directive 96/62/EC.
+2. The alert threshold for concentrations of nitrogen dioxide in ambient air shall be that laid down in Section II of Annex II.
+
+Article 5
+Particulate matter
+1. Member States shall take the measures necessary to ensure that concentrations of PM10 in ambient air, as assessed in accordance with Article 7, do not exceed the limit values laid down in Section I of Annex III as from the dates specified therein.
+The margins of tolerance laid down in Section I of Annex III shall apply in accordance with Article 8 of Directive 96/62/EC.
+2. Member States shall ensure that measuring stations to supply data on concentrations of PM2,5 are installed and operated. Each Member State shall choose the number and the siting of the stations at which PM2,5 is to be measured as representative of concentrations of PM2,5 within that Member State. Where possible sampling points for PM2,5 shall be co-located with sampling points for PM10.
+Within nine months of the end of each year Member States shall send the Commission the arithmetic mean, the median, the ninety-eighth percentile and the maximum concentration calculated from measurements of PM2,5 over any twenty-four hours within that year. The ninety-eighth percentile shall be calculated in accordance with the procedure laid down in Section 4 of Annex I to Council Decision 97/101/EC of 27 January 1997 establishing a reciprocal exchange of information and data from networks and individual stations measuring ambient air pollution within the Member States(6).
+3. Action plans for PM10 prepared in accordance with Article 8 of Directive 96/62/EC and general strategies for decreasing concentrations of PM10 shall also aim to reduce concentrations of PM2,5.
+4. Where the limit values for PM10 laid down in Section I of Annex III are exceeded owing to concentrations of PM10 in ambient air due to natural events which result in concentrations significantly in excess of normal background levels from natural sources, Member States shall inform the Commission in accordance with Article 11(1) of Directive 96/62/EC, providing the necessary justification to demonstrate that such exceedances are due to natural events. In such cases, Member States shall be obliged to implement action plans in accordance with Article 8(3) of Directive 96/62/EC only where the limit values laid down in Section I of Annex III are exceeded owing to causes other than natural events.
+5. Member States may designate zones or agglomerations within which limit values for PM10 as laid down in Section I of Annex III are exceeded owing to concentrations of PM10 in ambient air due to the resuspension of particulates following the winter sanding of roads. Member States shall send the Commission lists of any such zones or agglomerations together with information on concentrations and sources of PM10 therein. When informing the Commission in accordance with Article 11(1) of Directive 96/62/EC, Member States shall provide the necessary justification to demonstrate that any exceedances are due to such resuspended particulates, and that reasonable measures have been taken to lower the concentrations.
+Within such zones or agglomerations Member States shall be obliged to implement action plans in accordance with Article 8(3) of Directive 96/62/EC only where the limit values laid down in Section I of Annex III are exceeded owing to PM10 levels other than those caused by winter road sanding.
+
+Article 6
+Lead
+Member States shall take the measures necessary to ensure that concentrations of lead in ambient air, as assessed in accordance with Article 7, do not exceed the limit values laid down in Section I of Annex IV as from the dates specified therein.
+The margins of tolerance laid down in Section I of Annex IV shall apply in accordance with Article 8 of Directive 96/62/EC.
+
+Article 7
+Assessment of concentrations
+1. The upper and lower assessment thresholds for sulphur dioxide, nitrogen dioxide and oxides of nitrogen, particulate matter and lead for the purposes of Article 6 of Directive 96/62/EC shall be those laid down in Section I of Annex V.
+The classification of each zone or agglomeration for the purposes of the same Article 6 shall be reviewed at least every five years in accordance with the procedure laid down in Section II of Annex V. Classification shall be reviewed earlier in the event of significant changes in activities relevant to ambient concentrations of sulphur dioxide, nitrogen dioxide or, where relevant, oxides of nitrogen, particulate matter or lead.
+2. The criteria for determining the location of sampling points for the measurement of sulphur dioxide, nitrogen dioxide and oxides of nitrogen, particulate matter and lead in ambient air shall be those listed in Annex VI. The minimum number of sampling points for fixed measurements of concentrations of each relevant pollutant shall be as laid down in Annex VII and they shall be installed in each zone or agglomeration within which measurement is required if fixed measurement is the sole source of data on concentrations within it.
+3. For zones and agglomerations within which information from fixed measurement stations is supplemented by information from other sources, such as emission inventories, indicative measurement methods and air-quality modelling, the number of fixed measuring stations to be installed and the spatial resolution of other techniques shall be sufficient for the concentrations of air pollutants to be established in accordance with Section I of Annex VI and Section I of Annex VIII.
+4. For zones and agglomerations within which measurement is not required, modelling or objective-estimation techniques may be used.
+5. The reference methods for the analysis of sulphur dioxide, of nitrogen dioxide and of oxides of nitrogen and for the sampling and analysis of lead shall be as laid down in Sections I to III of Annex IX.
+The reference method for the sampling and measurement of PM10 shall be as laid down in Section IV of Annex IX.
+The provisional reference method for the sampling and measurement of PM2,5 shall be as laid down in Section V of Annex IX.
+The reference techniques for air-quality modelling shall be as laid down in Section VI of Annex IX.
+6. The date by which Member States shall inform the Commission of the methods they have used for the preliminary assessment of air quality under Article 11(1)(d) of Directive 96/62/EC shall be eighteen months after the entry into force of this Directive.
+7. Any amendments necessary to adapt this Article and Annexes V to IX to scientific and technical progress shall be adopted in accordance with the procedure laid down in Article 12 of Directive 96/62/EC.
+
+Article 8
+Public information
+1. Member States shall ensure that up-to-date information on ambient concentrations of sulphur dioxide, nitrogen dioxide and oxides of nitrogen, particulate matter and lead is routinely made available to the public as well as to appropriate organisations such as environmental organisations, consumer organisations, organisations representing the interests of sensitive populations and other relevant health-care bodies by means, for example, of broadcast media, press, information screens or computer-network services.
+Information on ambient concentrations of sulphur dioxide, nitrogen dioxide and particulate matter shall be updated on at least a daily basis, and, in the case of hourly values for sulphur dioxide and nitrogen dioxide, wherever practicable, information shall be updated on an hourly basis. Information on ambient concentrations of lead shall be updated on a three-monthly basis.
+Such information shall at least indicate any exceeding of the concentrations in the limit values and alert thresholds over the averaging periods laid down in Annexes I to IV. It shall also provide a short assessment in relation to limit values and alert thresholds and appropriate information regarding effects on health.
+2. When making plans or programmes available to the public under Article 8(3) of Directive 96/62/EC, including plans or programmes referred to under Articles 3(4), 5(4) and 5(5) of this Directive, Member States shall also make them available to the organisations referred to in paragraph 1.
+3. When an alert threshold laid down in Annex I or II is exceeded, details made available to the public in accordance with Article 10 of Directive 96/62/EC shall at least include the items listed in Section III of the Annex in question.
+4. Information made available to the public and to organisations under paragraphs 1 and 3 shall be clear, comprehensible and accessible.
+
+Article 9
+Repeals and transitional arrangements
+1. Council Directive 80/779/EEC of 15 July 1980 on air-quality limit values and guide values for sulphur dioxide and suspended particulates(7) shall be repealed with effect from 19 July 2001 except that Articles 1, 2(1), 3(1), 9, 15 and 16 of Directive 80/779/EEC and Annexes I, IIIb and IV thereto shall be repealed with effect from 1 January 2005.
+2. Council Directive 82/884/EEC of 3 December 1982 on a limit value for lead in the air(8) shall be repealed with effect from 19 July 2001 except that Articles 1, 2, 3(1), 7, 12 and 13 of Directive 82/884/EEC shall be repealed with effect from 1 January 2005.
+3. Council Directive 85/203/EEC of 7 March 1985 on air-quality standards for nitrogen dioxide(9) shall be repealed with effect from 19 July 2001 except that Articles 1(1), first indent, and (2), 2, first indent, 3(1), 5, 9, 15 and 16 of Directive 85/203/EEC and Annex I thereto shall be repealed with effect from 1 January 2010.
+4. From 19 July 2001 Member States shall employ measurement stations and other methods of air-quality assessment that comply with this Directive to assess concentrations of sulphur dioxide, nitrogen dioxide and lead in ambient air to obtain data for the purpose of demonstrating compliance with the limit values laid down in Directives 80/779/EEC, 82/884/EEC and 85/203/EEC until such time as the limit values laid down in those Directives cease to apply.
+5. From 19 July 2001 Member States may employ measurement stations and other methods of air-quality assessment that comply with this Directive as regards PM10 to assess concentrations of suspended particulate matter for the purpose of demonstrating compliance with the limit values for total suspended particulates laid down in Annex IV to Directive 80/779/EEC; for the purpose of demonstrating such compliance, however, the data so collected shall be multiplied by a factor of 1.2.
+6. Member States shall inform the Commission of any exceedances of the limit values laid down in Directives 80/779/EEC, 82/884/EEC and 85/203/EEC, together with the values recorded, the reasons for each recorded instance and the measures taken to prevent any recurrence, within nine months of the end of each year in accordance with the procedure laid down in Article 11 of Directive 96/62/EC until such time as the limit values laid down in those Directives cease to apply.
+7. In the zones in which a Member State considers it necessary to limit or prevent a foreseeable increase in pollution by sulphur dioxide, oxides of nitrogen or suspended particulate matter it may continue to use the guide values for the protection of ecosystems laid down in Annex II to Directive 80/779/EEC and in Annex II to Directive 85/203/EEC.
+
+Article 10
+Report and review
+No later than 31 December 2003 the Commission shall submit to the European Parliament and the Council a report based on the experience acquired in the application of this Directive and, in particular, on the results of the most recent scientific research concerning the effects on human health and ecosystems of exposure to sulphur dioxide, nitrogen dioxide and oxides of nitrogen, different fractions of particulate matter and lead, and on technological developments including the progress achieved in methods of measuring and otherwise assessing concentrations of particulate matter in ambient air and the deposition of particulate matter and lead on surfaces.
+With a view to maintaining a high level of protection of human health and the environment and taking into account the experience acquired in the application of this Directive in Member States including, in particular, the conditions as laid down in Annex VI under which measurement has been carried out, the aforementioned report will be accompanied by proposals for the amendment of this Directive if appropriate. In particular, the Commission will examine the limit values for the second stage for PM10 with a view to making them mandatory and will consider confirming or altering the limit values for the second stage and, if appropriate, for the first stage. In addition, the Commission will give particular attention to setting limit values for PM2,5 or different fractions of particulate matter, as appropriate. Furthermore the Commission will examine the annual limit value for the protection of human health for nitrogen dioxide and will make a proposal confirming or modifying that value. It will also examine the hourly limit value for nitrogen dioxide in the light of World Health Organisation guidelines and consider whether that limit value should be confirmed or altered.
+The Commission will also consider whether alert thresholds can be set, consistent with other pollutants in this Directive, for PM10, PM2,5 or particular fractions of particulate matter, as appropriate.
+
+Article 11
+Penalties
+Member States shall determine the penalties applicable to breaches of the national provisions adopted pursuant to this Directive. Those penalties shall be effective, proportionate and dissuasive.
+
+Article 12
+Implementation
+1. The Member States shall bring into force the laws, regulations and administrative provisions necessary to comply with this Directive by 19 July 2001. They shall forthwith inform the Commission thereof.
+When the Member States adopt those measures, these shall contain references to this Directive or shall be accompanied by such references on the occasion of their official publication. The methods of making such reference shall be laid down by the Member States.
+2. The Member States shall communicate to the Commission the texts of the main provisions of national law which they adopt in the field covered by this Directive.
+
+Article 13
+Entry into force
+This Directive shall enter into force on the twentieth day after that of its publication in the Official Journal of the European Communities.
+
+Article 14
+Addressees
+This Directive is addressed to the Member States.
+
+Done at Luxembourg, 22 April 1999.
+
+For the Council
+The President
+W. MÜLLER
+
+(1) OJ C 9, 14.1.1998, p. 6.
+(2) OJ C 214, 10.7.1998, p. 1.
+(3) Opinion of the European Parliament of 13 May 1998 (OJ C 167, 1.6.1998, p. 103), Council Common Position of 24 September 1998 (OJ C 360, 23.11.1998, p. 99) and Decision of the European Parliament of 13 January 1999 (OJ C 104, 14.4.1999, p. 44).
+(4) OJ C 138, 17.5.1993, p. 5.
+(5) OJ L 296, 21.11.1996, p. 55.
+(6) OJ L 35, 5.2.1997, p. 14.
+(7) OJ L 229, 30.8.1980, p. 30.
+(8) OJ L 378, 31.12.1982, p. 15.
+(9) OJ L 87, 27.3.1985, p. 1.
+
+
+
+ANNEX I
+
+LIMIT VALUES AND THE ALERT THRESHOLD FOR SULPHUR DIOXIDE
+I. Limit values for sulphur dioxide
+Limit values must be expressed in μg/m3. The volume must be standardised at a temperature of 293 °K and a pressure of 101,3 kPa.
+>TABLE>
+II. Alert threshold for sulphur dioxide
+500 μg/m3 measured over three consecutive hours at locations representative of air quality over at least 100 km2 or an entire zone or agglomeration, whichever is the smaller.
+III. Minimum details to be made available to the public when the alert threshold for sulphur dioxide is exceeded
+Details to be made available to the public should include at least:
+- the date, hour and place of the occurrence and the reasons for the occurrence, where known;
+- any forecasts of:
+- changes in concentrations (improvement, stabilisation, or deterioration), together with the reasons for those changes,
+- the geographical area concerned,
+- the duration of the occurence;
+- the type of population potentially sensitive to the occurrence;
+- the precautions to be taken by the sensitive population concerned.
+
+
+ANNEX II
+
+LIMIT VALUES FOR NITROGEN DIOXIDE (NO2) AND OXIDES OF NITROGEN (NOx) AND THE ALERT THRESHOLD FOR NITROGEN DIOXIDE
+I. Limit values for nitrogen dioxide and oxides of nitrogen
+Limit values must be expressed in μg/m3. The volume must be standardised at a temperature of 293 °K and a pressure of 101,3 kPa.
+>TABLE>
+II. Alert threshold for nitrogen dioxide
+400 μg/m3 measured over three consecutive hours at locations representative of air quality over at least 100 km 2 or an entire zone or agglomeration, whichever is the smaller.
+III. Minimum details to be made available to the public when the alert threshold for nitrogen dioxide is exceedeed
+Details to be made available to the public should include at least:
+- the date, hour and place of the occurrence and the reasons for the occurrence, where known;
+- any forecasts of:
+- changes in concentrations (improvement, stabilisation, or deterioration), together with the reasons for those changes,
+- the geographical area concerned,
+- the duration of the occurrence;
+- the type of population potentially sensitive to the occurrence;
+- the precautions to be taken by the sensitive population concerned.
+
+
+ANNEX III
+
+
+LIMIT VALUES FOR PARTICULATE MATTER (PM10)
+>TABLE>
+
+
+ANNEX IV
+
+
+LIMIT VALUE FOR LEAD
+>TABLE>
+
+
+ANNEX V
+
+DETERMINATION OF REQUIREMENTS FOR ASSESSMENT OF CONCENTRATIONS OF SULPHUR DIOXIDE, NITROGEN DIOXIDE (NO2), AND OXIDES OF NITROGEN (NOx), PARTICULATE MATTER (PM10) AND LEAD IN AMBIENT AIR WITHIN A ZONE OR AGGLOMERATION
+I. Upper and lower assessment thresholds
+The following upper and lower assessment thresholds will apply:
+(a) SULPHUR DIOXIDE
+>TABLE>
+(b) NITROGEN DIOXIDE AND OXIDES OF NITROGEN
+>TABLE>
+(c) PARTICULATE MATTER
+The upper and lower assessment thresholds for PM10 are based on the indicative limit values for 1 January 2010.
+>TABLE>
+(d) LEAD
+>TABLE>
+II. Determination of exceedances of upper and lower assessment thresholds
+Exceedances of upper and lower assessment thresholds must be determined on the basis of concentrations during the previous five years where sufficient data are available. An assessment threshold will be deemed to have been exceeded if during those five years the total number of exceedances of the numerical concentration of the threshold is more than three times the number of exceedances allowed each year.
+Where fewer than five years' data are available Member States may combine measurement campaigns of short duration during the period of the year and at locations likely to be typical of the highest pollution levels with results obtained from information from emission inventories and modelling to determine exceedances of the upper and lower assessment thresholds.
+
+
+ANNEX VI
+
+LOCATION OF SAMPLING POINTS FOR THE MEASUREMENT OF SULPHUR DIOXIDE, NITROGEN DIOXIDE AND OXIDES OF NITROGEN, PARTICULATE MATTER AND LEAD IN AMBIENT AIR
+The following considerations will apply to fixed measurement.
+I. Macroscale siting
+(a) Protection of human health
+Sampling points directed at the protection of human health should be sited:
+(i) to provide data on the areas within zones and agglomerations where the highest concentrations occur to which the population is likely to be directly or indirectly exposed for a period which is significant in relation to the averaging period of the limit value(s);
+(ii) to provide data on levels in other areas within the zones and agglomerations which are representative of the exposure of the general population.
+Sampling points should in general be sited to avoid measuring very small micro-environments in their immediate vicinity. As a guideline, a sampling point should be sited to be representative of air quality in a surrounding area of no less than 200 m2 at traffic-orientated sites and of several square kilometres at urban-background sites.
+Sampling points should also, where possible, be representative of similar locations not in their immediate vicinity.
+Account should be taken of the need to locate sampling points on islands, where that is necessary for the protection of human health.
+(b) Protection of ecosystems and vegetation.
+Sampling points targeted at the protection of ecosystems or vegetation should be sited more than 20 km from agglomerations or more than 5 km from other built-up areas, industrial installations or motorways. As a guideline, a sampling point should be sited to be representative of air quality in a surrounding area of at least 1000 km2. A Member State may provide for a sampling point to be sited at a lesser distance or to be representative of air quality in a less extended area, taking account of geographical conditions.
+Account should be taken of the need to assess air quality on islands.
+II. Microscale siting
+The following guidelines should be met as far as practicable:
+- the flow around the inlet sampling probe should be unrestricted without any obstructions affecting the airflow in the vicinity of the sampler (normally some metres away from buildings, balconies, trees, and other obstacles and at least 0,5 m from the nearest building in the case of sampling points representing air quality at the building line);
+- in general, the inlet sampling point should be between 1,5 m (the breathing zone) and 4 m above the ground. Higher positions (up to 8 m) may be necessary in some circumstances. Higher siting may also be appropriate if the station is representative of a large area;
+- the inlet probe should not be positioned in the immediate vicinity of sources in order to avoid the direct intake of emissions unmixed with ambient air;
+- the sampler's exhaust outlet should be positioned so that recirculation of exhaust air to the sampler inlet is avoided;
+- location of traffic-orientated samplers:
+- for all pollutants, such sampling points should be at least 25 m from the edge of major junctions and at least 4 m from the centre of the nearest traffic lane,
+- for nitrogen dioxide, inlets should be no more than 5 m from the kerbside,
+- for particulate matter and lead, inlets should be sited so as to be representative of air quality near to the building line.
+The following factors may also be taken into account:
+- interfering sources;
+- security;
+- access;
+- availability of electrical power and telephone communications;
+- visibility of the site in relation to its surroundings;
+- safety of public and operators;
+- the desirability of co-locating sampling points for different pollutants;
+- planning requirements.
+III. Documentation and review of site selection
+The site-selection procedures should be fully documented at the classification stage by such means as compass-point photographs of the surrounding area and a detailed map. Sites should be reviewed at regular intervals with repeated documentation to ensure that selection criteria remain valid over time.
+
+
+ANNEX VII
+
+CRITERIA FOR DETERMINING MINIMUM NUMBERS OF SAMPLING POINTS FOR FIXED MEASUREMENT OF CONCENTRATIONS OF SULPHUR DIOXIDE (SO2), NITROGEN DIOXIDE (NO2) AND OXIDES OF NITROGEN, PARTICULATE MATTER AND LEAD IN AMBIENT AIR
+I. Minimum number of sampling points for fixed measurement to assess compliance with limit values for the protection of human health and alert thresholds in zones and agglomerations where fixed measurement is the sole source of information
+(a) Diffuse sources
+>TABLE>
+(b) Point sources
+For the assessment of pollution in the vicinity of point sources, the number of sampling points for fixed measurement should be calculated taking into account emission densities, the likely distribution patterns of ambient-air pollution and the potential exposure of the population.
+II. Minimum number of sampling points for fixed measurements to assess compliance with limit values for the protection of ecosystems or vegetation in zones other than agglomerations
+>TABLE>
+In island zones the number of sampling points for fixed measurement should be calculated taking into account the likely distribution patterns of ambient-air pollution and the potential exposure of ecosystems or vegetation.
+
+
+ANNEX VIII
+
+DATA-QUALITY OBJECTIVES AND COMPILATION OF RESULTS OF AIR-QUALITY ASSESSMENT
+I. Data-quality objectives
+The following data-quality objectives for the required accuracy of assessment methods, of minimum time coverage and of data capture of measurement are laid down to guide quality-assurance programmes.
+>TABLE>
+The accuracy of the measurement is defined as laid down in the "Guide to the Expression of Uncertainty of Measurements" (ISO 1993) or in ISO 5725-1 "Accuracy (trueness and precision) of measurement methods and results" (1994). The percentages in the table are given for individual measurements averaged, over the period considered, by the limit value, for a 95 % confidence interval (bias + two times the standard deviation). The accuracy for continuous measurements should be interpreted as being applicable in the region of the appropriate limit value.
+The accuracy for modelling and objective estimation is defined as the maximum deviation of the measured and calculated concentration levels, over the period considered by the limit value, without taking into account the timing of the events.
+The requirements for minimum data capture and time coverage do not include losses of data due to the regular calibration or the normal maintenance of the instrumentation.
+By way of derogation, Member States may apply random measurements instead of continuous measurements for particulate matter and lead if they can demonstrate to the Commission that accuracy within the 95 % confidence interval with respect to continuous monitoring is within 10 %. Random sampling must be spread evenly over the year.
+II. Results of air quality assessment
+The following information should be compiled for zones or agglomerations within which sources other than measurement are employed to supplement information from measurement or as the sole means of air-quality assessment:
+- a description of assessment activities carried out;
+- the specific methods used, with references to descriptions of the method;
+- the sources of data and information;
+- a description of results, including accuracies and, in particular, the extent of any area or, if relevant, the length of road within the zone or agglomeration over which concentrations exceed limit value(s) or, as may be, limit value(s) plus applicable margin(s) of tolerance and of any area within which concentrations exceed the upper assessment threshold or the lower assessment threshold;
+- for limit values the object of which is the protection of human health, the population potentially exposed to concentrations in excess of the limit value.
+Where possible, Member States should compile maps showing concentration distributions within each zone and agglomeration.
+III. Standardisation
+For sulphur dioxide and oxides of nitrogen the volume must be standardised at a temperature of 293 °K and a pressure of 101,3 kPa.
+
+
+ANNEX IX
+
+REFERENCE METHODS FOR ASSESSMENT OF CONCENTRATIONS OF SULPHUR DIOXIDE, NITROGEN DIOXIDE AND OXIDES OF NITROGEN, PARTICULATE MATTER (PM10 AND PM2,5) AND LEAD
+I. Reference method for the analysis of sulphur dioxide:
+ISO/FDIS 10498 (Standard in draft) Ambient air - determination of sulphur dioxide - ultraviolet fluorescence method.
+A Member State may use any other method which it can demonstrate gives results equivalent to the above method.
+II. Reference method for the analysis of nitrogen dioxide and oxides of nitrogen:
+ISO 7996: 1985 Ambient air - determination of the mass concentrations of nitrogen oxides - chemiluminescence method.
+A Member State may use any other method which it can demonstrate gives results equivalent to the above method.
+III.A Reference method for the sampling of lead:
+The reference method for the sampling of lead will be that described in the Annex to Directive 82/884/EEC until such time as the limit value in Annex IV to this Directive is to be met, when the reference method will be that for PM10 as laid down in Section IV of this Annex.
+A Member State may use any other method which it can demonstrate gives results equivalent to the above method.
+III.B Reference method for the analysis of lead:
+ISO 9855: 1993 Ambient air - Determination of the particulate lead content of aerosols collected in filters. Atomic absorption spectroscopy method.
+A Member State may use any other method which it can demonstrate gives results equivalent to the above method.
+IV. Reference method for the sampling and measurement of PM10
+The reference method for the sampling and measurement of PM10 will be that described in EN 12341 "Air Quality - Field Test Procedure to Demonstrate Reference Equivalence of Sampling Methods for the PM10 fraction of particulate matter". The measurement principle is based on the collection on a filter of the PM10 fraction of ambient particulate matter and the gravimetric mass determination.
+A Member State may use any other method which it can demonstrate gives results equivalent to the above method or any other method which the Member State concerned can demonstrate displays a consistent relationship to the reference method. In that event the results achieved by that method must be corrected by a relevant factor to produce results equivalent to those that would have been achieved by using the reference method.
+Each Member State must inform the Commission of the method used to sample and measure PM10. The Commission must as soon as possible carry out intercomparison exercises for PM10 sampling and measurement methods in order to provide information for the review of this Directive in accordance with Article 10.
+V. Provisional reference method for the sampling and measurement of PM2,5
+The Commission will produce guidelines, in consultation with the committee referred to in Article 12 of Directive 96/62/EEC, for an appropriate provisional reference method for the sampling and assessment of PM2,5 by 19 July 2001.
+A Member State may use any other method which it considers suitable.
+Each Member State must inform the Commission of the method used to sample and measure PM2,5. The Commission must as soon as possible carry out intercomparison exercises for PM2,5 sampling and measurement methods in order to provide information for the review of this Directive in accordance with Article 10.
+VI. Reference modelling techniques:
+Reference modelling techniques cannot be specified at present. Any amendments to adapt this point to scientific and technical progress must be adopted in accordance with the procedure laid down in Article 12(2) of Directive 96/62/EC.
