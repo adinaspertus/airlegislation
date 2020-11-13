@@ -47,7 +47,7 @@ head(leg_all)
 
 
 ```{r}
-# combine text into corpus dataframe ("corpdfm")
+# combine text into corpus document feature matrix ("corpdfm")
 # this provides frequency counts of how many time each word appears in each document
 corp <- corpus(leg_all, text_field = "text", docid_field = "title")
 corpdfm <- dfm(corp)
@@ -56,6 +56,53 @@ corpdfm <- dfm(corp)
 # note: "/" and #s are counted as words, but this doesn't matter for our purposes
 head(corpdfm)
 ```
+
+```{r}
+# ATTEMPT to remove all words that are used fewer than X times
+
+# code will still run if you skip this section 
+
+# convert dfm to df in order to run manipulations
+# add a row at the bottom for total word counts
+test_df <- convert(corpdfm, to = "data.frame") %>%
+  bind_rows(colSums(corpdfm, na.rm = TRUE))
+test_df[16, 1] <- "Totals"
+  
+remove_words <- c() # create an empty list of columns to remove (later) 
+
+for (i in 2:ncol(test_df)) { # for each column in the data frame
+   if (test_df[16, i] < 20) { # if the total number of words is less than 20
+     remove_words <- append(remove_words, colnames(test_df)[i]) # add word to the list of words to be removed
+   } 
+}
+
+#test_df2 <- select(test_df, -remove_cols) # now make new dataframe without those columns
+#test_dfm <- dfm(test_df2) # unable to turn it back into a dfm
+
+colnames(test_df)[1]
+# idea: save a list of all words in the for loop and then create a new dfm 
+# using the "remove" argument to exclude those columns
+# issue: I don't know how to extract the name of the word from the column title
+
+# make new corpdfm WITHOUT the words that are infrequent
+
+corp2 <- corpus(leg_all, text_field = "text", docid_field = "title")
+corpdfm <- dfm(corp2, remove = remove_words)
+
+
+
+###############ignore#####################
+#test_df <- convert(leg_nb[["x"]], to = "data.frame")
+#test_df <- convert(corpdfm, to = "data.frame")
+# corpdfm_filter <- test_df %>%
+#   replace(is.na(.), 0) %>%
+#   summarise_all(sum)
+
+#bind_rows(test_df, colSums(corpdfm, na.rm=TRUE))
+#colSums(corpdfm, na.rm = TRUE)
+```
+
+
 
 ```{r}
 # run naive-bayes classification model 
@@ -73,9 +120,9 @@ summary(leg_nb)
 # "Naive Bayes can only take features into consideration that occur both in the training set and the test set, but we can make the features identical using dfm_match()"
 
 # demo
-#leg_nb[["x"]] #1980 is first EU legislation
-#test_df <- convert(leg_nb[["x"]], to = "data.frame") 
-#test_df # gives you count of word by legislation
+leg_nb[["x"]] #1980 is first EU legislation
+test_df <- convert(leg_nb[["x"]], to = "data.frame") 
+test_df # gives you count of word by legislation
 
 # extract feature scores from naive bayes output to make a new dataframe
 feature_scores <- t(as.data.frame(leg_nb[["param"]])) 
@@ -88,7 +135,7 @@ feature_scores <- feature_scores %>%
   rename(features = rn) %>% # rename row name ("rn") col to "features"
   transform(ratio_EU_US = EU / US) %>% # create col for EU/US score ratio
   transform(ratio_US_EU = US / EU) %>% # create col for US/EU score ratio
-  transform(log_ratio_EU_US = log( EU / US)) %>% # create col for log of EU/US score ratio
+  transform(log_ratio_EU_US = log(EU / US)) %>% # create col for log of EU/US score ratio
   arrange(ratio_EU_US) # sort features by ascending EU/US score ratio
 
 # make a new dataframe to visualize the distribution of logged score ratios
@@ -139,7 +186,7 @@ summary(wfish)
 ```
 
 
-
+############# IGNORE ################
 
 
 
