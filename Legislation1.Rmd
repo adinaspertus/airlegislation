@@ -160,7 +160,7 @@ testwords <- c("environment", "human", "health", "wellbeing", "climate", "cancer
 
 #filter out the big list of word scores to just the words
 #that we selected in "testwords"
-testscores <- arrange(filter(fss_test, features %in% testwords),
+testscores <- arrange(filter(feature_scores_ranked, features %in% testwords),
                       log_ratio_EU_US)
 
 
