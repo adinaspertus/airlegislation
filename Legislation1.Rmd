@@ -63,6 +63,15 @@ head(corpdfm)
 # convert dfm to df in order to run manipulations (see r chunk below)
 # add a row at the bottom for total word counts
 
+# step 1: extract row names and dimensions as list
+#leg_names <- rownames(corpdfm)
+#leg_names <- as.list(rownames(corpdfm))
+
+# step 2: use grepl to create one matrix of location of US leg (CAA) and one list for EU leg (EC)
+# step 3: repeat colSums dependent on legislation name (dims)
+# step 4: update lines addressing the dataframe with total counts accordingly
+
+
 temp_df <- convert(corpdfm, to = "data.frame") %>%
   bind_rows(colSums(corpdfm, na.rm = TRUE))
 temp_df[16, 1] <- "totals"
