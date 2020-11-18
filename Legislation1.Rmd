@@ -58,43 +58,49 @@ head(corpdfm)
 ```
 
 ```{r}
+# could repeat process to add three col at bottom that gives sums of each row
+
+# convert dfm to df in order to run manipulations (see r chunk below)
+# add a row at the bottom for total word counts
+
+temp_df <- convert(corpdfm, to = "data.frame") %>%
+  bind_rows(colSums(corpdfm, na.rm = TRUE))
+temp_df[16, 1] <- "totals"
+
+# create rotated dataframe with total counts for later use
+temp_df_flip <- t(temp_df)
+temp_df_flip <- as.data.frame(temp_df_flip) 
+colnames(temp_df_flip) <- as.character(unlist(temp_df_flip[1,])) # move row 1 to col header
+temp_df_flip = temp_df_flip[-1, ] # remove duplicate row
+temp_df_flip <- setDT(temp_df_flip, keep.rownames = T) # moves row names (words) into col 1
+names(temp_df_flip)[1] <- "features" # rename col 1 (words) for later join
+
+total_feature_counts <- temp_df_flip %>% # save for later join
+  select(features, totals)
+
+```
+
+```{r}
 # Section remove all words that are used fewer than X times
 # code will still run if you skip this section, which you might want
 # to do if you want to see all totals
-
-# convert dfm to df in order to run manipulations
-# add a row at the bottom for total word counts
-
-#CHANGE TO TEMP NOT TEST
-test_df <- convert(corpdfm, to = "data.frame") %>%
+temp_df <- convert(corpdfm, to = "data.frame") %>%
   bind_rows(colSums(corpdfm, na.rm = TRUE))
-test_df[16, 1] <- "Totals"
-  
+
 remove_words <- c() # create an empty list of columns to remove (later) 
 
-for (i in 2:ncol(test_df)) { # for each column in the data frame
-   if (test_df[16, i] < 10) { # if the total number of occurances is less than 10
-     remove_words <- append(remove_words, colnames(test_df)[i]) # add word to the list of words to be removed
+for (i in 2:ncol(temp_df)) { # for each column in the data frame
+   if (temp_df[16, i] < 2) { # if the total number of occurances is less than 2
+     remove_words <- append(remove_words, colnames(temp_df)[i]) # add word to the list of words to be removed
    } 
 }
 
 # now make new corpdfm WITHOUT the words that are infrequent
 # (this process is repetitive, but was the best I could figure out
-# because of issues between dataframes and dfm objects)
+# due to challenges moving between dataframes and dfm objects)
 
 corp2 <- corpus(leg_all, text_field = "text", docid_field = "title")
 corpdfm <- dfm(corp2, remove = remove_words)
-
-
-# create summary column
-
-temp_df_flip <- t(test_df)
-temp_df_flip <- as.data.frame(temp_df_flip) 
-temp_df_flip <- setDT(temp_df_flip, keep.rownames = T)
-colnames(temp_df_flip) <- as.character(unlist(temp_df_flip[1,]))
-temp_df_flip = temp_df_flip[-1, ]
-
-
 
 
 ```
@@ -116,15 +122,14 @@ summary(leg_nb)
 ```{r}
 # DELETE: "Naive Bayes can only take features into consideration that occur both in the training set and the test set, but we can make the features identical using dfm_match()"
 
-# demo
+# demo - DELETE
 leg_nb[["x"]] #1980 is first EU legislation
 test_df <- convert(leg_nb[["x"]], to = "data.frame") 
-test_df # gives you count of word by legislation
+head(test_df) # gives count of word by legislation (also above)
 
 # extract feature scores from naive bayes output to make a new dataframe
 feature_scores <- t(as.data.frame(leg_nb[["param"]])) 
 feature_scores <- as.data.frame(feature_scores)
-
 
 # organize the feature (i.e., word) score table
 feature_scores <- feature_scores %>%
@@ -134,6 +139,9 @@ feature_scores <- feature_scores %>%
   transform(ratio_US_EU = US / EU) %>% # create col for US/EU score ratio
   transform(log_ratio_EU_US = log(EU / US)) %>% # create col for log of EU/US score ratio
   arrange(ratio_EU_US) # sort features by ascending EU/US score ratio
+
+# add total feature counts - ISSUE: this step is messing up the ggplot
+# feature_scores <- merge(feature_scores, total_feature_counts, by = "features")
 
 # make a new dataframe to visualize the distribution of logged score ratios
 # this can be deleted
@@ -186,7 +194,7 @@ summary(wfish)
 
 
 
-```{r}
+```{r, eval = F}
 preds  <- predict(wfish, interval = "confidence")
 
 # grab the (only) internal element 'fit' and make it a data frame
@@ -212,7 +220,7 @@ ggplot(preds_dv, aes(x = fit, xmin = lwr, xmax = upr,
           subtitle = "Sorted based on legislation text")
 ```
 
-```{r}
+```{r, eval = F}
 #position is the only thing that the model is looking at
 
 #let's find out why feinstein is -2... 
@@ -239,7 +247,7 @@ testscores
 
 ```
 
-```{r}
+```{r, eval = F}
 ggplot(wscores, aes(score, offset, label = word)) +
   geom_point(color = "grey", alpha = 0.2) +
   geom_text_repel(data = testscores, col = "black") +
