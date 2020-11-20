@@ -109,7 +109,8 @@ remove_words <- c() # create an empty list of columns to remove (later)
 # runs slow because you shouldn't run python in R... 
 # REMINDER: if time, go back and see if there is a function for this!
 for (i in 2:ncol(temp_df)) { # for each column in the data frame
-   if ((total_eu[i-1] < 1) | (total_us[i-1] < 1) | (total_all[i-1] < 20)) { # if word occurs less than once in either jurisdiction, or fewer than 10 times overall
+   #if ((total_eu[i-1] < 1) | (total_us[i-1] < 1) | (total_all[i-1] < 20)) { # if word occurs less than once in either jurisdiction, or fewer than 10 times overall
+   if (total_all[i-1] < 20) { # test just total
      remove_words <- append(remove_words, colnames(temp_df)[i]) # add word to the list of words to be removed
    } 
 }
@@ -179,22 +180,170 @@ The following model only includes words that occur more than once in each jurisd
 ```{r}
 testwords <- c("environment", "human", "health", "wellbeing", "climate", "cancer", "air", "health-protection", "health-care", "healthcare", "disease", "science", "lung", "prevention", "prevent", "prevented", "preventing") # see if "preventative" ever used in docs
 
+# look up the counts for each of these words
+
+econ_bundle <- c(
+  "economy",
+  "economic",
+  "economics",
+  "economical",
+  "economically",
+  "efficient",
+  "efficiency",
+  "efficiencies",
+  "cost",
+  "costs",
+  "cost-effective",
+  "cost-effectiveness",
+  "effectiveness", # for "cost effectiveness" without hyphen --> confirm
+  "benefit",
+  "benefits",
+  "trade",
+  "trading",
+  "market",
+  "marginal",
+  "business",
+  "businesses")
+
+health_bundle <- c(
+  "breathing",
+  "lung",
+  "pulmonary",
+  "population", # not sure if this belongs here - look at use
+  "cancer",
+  "disease",
+  "diseases",
+  "health",
+  "health-protection",
+  "health-care",
+  "asthma",
+  "human")
+
+prevent_bundle <- c(
+  "prevent",
+  "prevented",
+  "preventive",
+  "prevention",
+  "preventing",
+  "precautions",
+  "precautionary",
+  "protect",
+  "protection",
+  "protective",
+  "protecting")
+
+eco_bundle <- c(
+  "ecological",
+  "nature",
+  "ecosystems",
+  "ecosystem",
+  "forest",
+  "forests",
+  "agriculture",
+  "agricultural",
+  "vegetation",
+  "trees",
+  "acid", # for "acid deposition, re. acid rain
+  "acidification", # same
+  "water",
+  "waters"
+)
+
+other_bundle <- c(
+  "local",
+  "incentives",
+  "permit",
+  "permits",
+  "fiscal",
+  "resources" 
+)
 
 #filter out the big list of word scores to just the words
 #that we selected in "testwords"
-testscores <- arrange(filter(feature_scores_ranked, features %in% testwords),
-                      log_ratio_EU_US)
+test_bundle_plot <- arrange(filter(feature_scores, features %in% testwords),
+                     log_ratio_EU_US)
+
+econ_bundle_plot <- arrange(filter(feature_scores, features %in% econ_bundle),
+                     log_ratio_EU_US)
+
+health_bundle_plot <- arrange(filter(feature_scores, features %in% health_bundle),
+                     log_ratio_EU_US)
+
+prevent_bundle_plot <- arrange(filter(feature_scores, features %in% prevent_bundle),
+                     log_ratio_EU_US)
+
+eco_bundle_plot <- arrange(filter(feature_scores, features %in% eco_bundle),
+                     log_ratio_EU_US)
+
+other_bundle_plot <- arrange(filter(feature_scores, features %in% other_bundle),
+                     log_ratio_EU_US)
+
+test_bundle_plot %>%
+  mutate(features = reorder(features, log_ratio_EU_US)) %>%
+  ggplot(aes(features, log_ratio_EU_US, fill = log_ratio_EU_US < 0)) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  labs (title = "test bundle", x = "Words found in legislation", y = "EU / US log ratio") +
+  scale_fill_manual(name = "Word is more suggestive of", labels = c("EU Legislation", "US Legislation"), values = c("light blue", "coral"))
+
+econ_bundle_plot %>%
+  mutate(features = reorder(features, log_ratio_EU_US)) %>%
+  ggplot(aes(features, log_ratio_EU_US, fill = log_ratio_EU_US < 0)) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  labs (title = "econ bundle", x = "Words found in legislation", y = "EU / US log ratio") +
+  scale_fill_manual(name = "Word is more suggestive of", labels = c("EU Legislation", "US Legislation"), values = c("light blue", "coral"))
+
+health_bundle_plot %>%
+  mutate(features = reorder(features, log_ratio_EU_US)) %>%
+  ggplot(aes(features, log_ratio_EU_US, fill = log_ratio_EU_US < 0)) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  labs (title = "health bundle", x = "Words found in legislation", y = "EU / US log ratio") +
+  scale_fill_manual(name = "Word is more suggestive of", labels = c("EU Legislation", "US Legislation"), values = c("light blue", "coral"))
+
+prevent_bundle_plot %>%
+  mutate(features = reorder(features, log_ratio_EU_US)) %>%
+  ggplot(aes(features, log_ratio_EU_US, fill = log_ratio_EU_US < 0)) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  labs (title = "prevent bundle", x = "Words found in legislation", y = "EU / US log ratio") +
+  scale_fill_manual(name = "Word is more suggestive of", labels = c("EU Legislation", "US Legislation"), values = c("light blue", "coral"))
+
+eco_bundle_plot %>%
+  mutate(features = reorder(features, log_ratio_EU_US)) %>%
+  ggplot(aes(features, log_ratio_EU_US, fill = log_ratio_EU_US < 0)) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  labs (title = "eco bundle", x = "Words found in legislation", y = "EU / US log ratio") +
+  scale_fill_manual(name = "Word is more suggestive of", labels = c("EU Legislation", "US Legislation"), values = c("light blue", "coral"))
+
+other_bundle_plot %>%
+  mutate(features = reorder(features, log_ratio_EU_US)) %>%
+  ggplot(aes(features, log_ratio_EU_US, fill = log_ratio_EU_US < 0)) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  labs (title = "other bundle", x = "Words found in legislation", y = "EU / US log ratio") +
+  scale_fill_manual(name = "Word is more suggestive of", labels = c("EU Legislation", "US Legislation"), values = c("light blue", "coral"))
 
 
+
+
+
+```
+
+
+```{r}
 testscores %>%
   mutate(features = reorder(features, log_ratio_EU_US)) %>%
   ggplot(aes(features, log_ratio_EU_US, fill = log_ratio_EU_US < 0)) +
   geom_bar(stat = "identity") +
   coord_flip() +
-  ylab("EU / US log ratio") + # log of the liklihood of this word being in an EU doc vs. a US doc
-  xlab("Words found in legislation") +
+  labs (title = "test bundle", x = "Words found in legislation", y = "EU / US log ratio") +
   scale_fill_manual(name = "Word is more suggestive of", labels = c("EU Legislation", "US Legislation"), values = c("light blue", "coral"))
 ```
+
+
 
 
 ############# IGNORE ################
