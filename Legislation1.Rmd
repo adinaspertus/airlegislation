@@ -58,23 +58,25 @@ head(corpdfm)
 ```
 
 ```{r}
-# could repeat process to add three col at bottom that gives sums of each row
+# create dataframe that includes total feature (word) counts (total; EU; US)
 
-# convert dfm to df in order to run manipulations (see r chunk below)
-# add a row at the bottom for total word counts
+# convert dfm to df in order to run manipulations
+temp_df <- convert(corpdfm, to = "data.frame") 
 
-# step 1: extract row names and dimensions as list
-#leg_names <- rownames(corpdfm)
-#leg_names <- as.list(rownames(corpdfm))
+# choose which jurisdictional groups to sum over
+EU_rows <- c(1:6,12:15) # I manually set jurisdictional rows, but could also
+US_rows <- c(7:11) # use grepl in future to sort based on signifiers in titles
 
-# step 2: use grepl to create one matrix of location of US leg (CAA) and one list for EU leg (EC)
-# step 3: repeat colSums dependent on legislation name (dims)
-# step 4: update lines addressing the dataframe with total counts accordingly
-
-
+# add 3 rows at bottom of word sums
 temp_df <- convert(corpdfm, to = "data.frame") %>%
-  bind_rows(colSums(corpdfm, na.rm = TRUE))
-temp_df[16, 1] <- "totals"
+  bind_rows(mapply(sum, temp_df[, -1], USE.NAMES = T)) %>% # total sum
+  bind_rows(mapply(sum, temp_df[EU_rows, -1], USE.NAMES = T)) %>% # EU row sum
+  bind_rows(mapply(sum, temp_df[US_rows, -1], USE.NAMES = T)) # US row sum
+  
+# add col 1 labels for word count totals rows
+temp_df[nrow(temp_df)-2, 1] <- "total"
+temp_df[nrow(temp_df)-1, 1] <- "EU total"
+temp_df[nrow(temp_df), 1] <- "US total"
 
 # create rotated dataframe with total counts for later use
 temp_df_flip <- t(temp_df)
@@ -84,24 +86,43 @@ temp_df_flip = temp_df_flip[-1, ] # remove duplicate row
 temp_df_flip <- setDT(temp_df_flip, keep.rownames = T) # moves row names (words) into col 1
 names(temp_df_flip)[1] <- "features" # rename col 1 (words) for later join
 
-total_feature_counts <- temp_df_flip %>% # save for later join
-  select(features, totals)
+feature_counts_totals <- temp_df_flip %>% # save for later join
+  select("features", "total", "EU total", "US total") # select rows to keep (as cols)
 
 ```
 
 ```{r}
-# Section remove all words that are used fewer than X times
-# code will still run if you skip this section, which you might want
-# to do if you want to see all totals
-temp_df <- convert(corpdfm, to = "data.frame") %>%
-  bind_rows(colSums(corpdfm, na.rm = TRUE))
+### This section remove all words that are used fewer than 1 times in either jurisdiction
+
+# can be changed to set a higher threshold
+# code will still run if you skip this section
+
+temp_df <- convert(corpdfm, to = "data.frame") 
+
+#total_all_names <- mapply(sum, temp_df[, -1], USE.NAMES = T)
+
+#temp_df_test_sums <- convert(corpdfm, to = "data.frame") %>%
+#  bind_rows(total_all_names) # old method
+
+
+#test_eu <- colSums(corpdfm, n = EU_rows)
+
+
+
+
+total_all <- mapply(sum, temp_df[, -1], USE.NAMES = F)
+total_eu <- mapply(sum, temp_df[EU_rows, -1], USE.NAMES = F)
+total_us <- mapply(sum, temp_df[US_rows, -1], USE.NAMES = F)
+head(total_all)
+head(total_eu)
+head(total_us)
 
 remove_words <- c() # create an empty list of columns to remove (later) 
 
 # runs slow because you shouldn't run python in R... 
 # REMINDER: if time, go back and see if there is a function for this!
 for (i in 2:ncol(temp_df)) { # for each column in the data frame
-   if (temp_df[16, i] < 2) { # if the total number of occurances is less than 2
+   if ((total_eu[i-1] < 1) | (total_us[i-1] < 1)) { # if the total number of occurances is less than once in either jurisdiction
      remove_words <- append(remove_words, colnames(temp_df)[i]) # add word to the list of words to be removed
    } 
 }
