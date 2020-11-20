@@ -98,6 +98,8 @@ temp_df <- convert(corpdfm, to = "data.frame") %>%
 
 remove_words <- c() # create an empty list of columns to remove (later) 
 
+# runs slow because you shouldn't run python in R... 
+# REMINDER: if time, go back and see if there is a function for this!
 for (i in 2:ncol(temp_df)) { # for each column in the data frame
    if (temp_df[16, i] < 2) { # if the total number of occurances is less than 2
      remove_words <- append(remove_words, colnames(temp_df)[i]) # add word to the list of words to be removed
