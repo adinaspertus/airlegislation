@@ -60,7 +60,7 @@ head(corpdfm)
 ```{r}
 # create dataframe that includes total feature (word) counts (total; EU; US)
 
-# convert dfm to df in order to run manipulations
+# convert dfm to a temporary df in order to run manipulations
 temp_df <- convert(corpdfm, to = "data.frame") 
 
 # choose which jurisdictional groups to sum over
@@ -91,38 +91,25 @@ feature_counts_totals <- temp_df_flip %>% # save for later join
 
 ```
 
+
+This section removes all words that occur fewer than once in either jurisdiction OR fewer than 20 times overall. Ensuring a word is present in both documents is necessary for running the naive bayes classifier further on. The total word requirement can also be used to set alternative thresholds. The full script will still run if you exclude this section (although the naive bayes classification will be messy.)
+
 ```{r}
-### This section remove all words that are used fewer than 1 times in either jurisdiction
-
-# can be changed to set a higher threshold
-# code will still run if you skip this section
-
+# convert dfm to a temporary df in order to run manipulations
 temp_df <- convert(corpdfm, to = "data.frame") 
 
-#total_all_names <- mapply(sum, temp_df[, -1], USE.NAMES = T)
-
-#temp_df_test_sums <- convert(corpdfm, to = "data.frame") %>%
-#  bind_rows(total_all_names) # old method
-
-
-#test_eu <- colSums(corpdfm, n = EU_rows)
-
-
-
-
+# generates jurisdictional word totals
+# (different from mapply() above b/c here we don't want the names included)
 total_all <- mapply(sum, temp_df[, -1], USE.NAMES = F)
 total_eu <- mapply(sum, temp_df[EU_rows, -1], USE.NAMES = F)
 total_us <- mapply(sum, temp_df[US_rows, -1], USE.NAMES = F)
-head(total_all)
-head(total_eu)
-head(total_us)
 
 remove_words <- c() # create an empty list of columns to remove (later) 
 
 # runs slow because you shouldn't run python in R... 
 # REMINDER: if time, go back and see if there is a function for this!
 for (i in 2:ncol(temp_df)) { # for each column in the data frame
-   if ((total_eu[i-1] < 1) | (total_us[i-1] < 1)) { # if the total number of occurances is less than once in either jurisdiction
+   if ((total_eu[i-1] < 1) | (total_us[i-1] < 1) | (total_all[i-1] < 20)) { # if word occurs less than once in either jurisdiction, or fewer than 10 times overall
      remove_words <- append(remove_words, colnames(temp_df)[i]) # add word to the list of words to be removed
    } 
 }
@@ -130,34 +117,29 @@ for (i in 2:ncol(temp_df)) { # for each column in the data frame
 # now make new corpdfm WITHOUT the words that are infrequent
 # (this process is repetitive, but was the best I could figure out
 # due to challenges moving between dataframes and dfm objects)
-
 corp2 <- corpus(leg_all, text_field = "text", docid_field = "title")
 corpdfm <- dfm(corp2, remove = remove_words)
 
-
+# maybe come back and rename this corpdfm_clean
 ```
 
 
+This section runs the Naive-Bayes classification model. 
+- The "jurisdiction" is set as the "training label"
+- The "prior" probability is 50/50, which means that the proportion of EU vs. US documents in the model does not impact the prediction (see `help(textmodel_nb)` for more information).
+- In the summary output, estimated jurisdicational feature scores should be read in realtion to eachother by word. E.g., the word "no" is 0.001373/0.001323 times more likely to indicate an EU document than US document.
 
 ```{r}
-# run naive-bayes classification model 
-# "jurisdiction" is set as the "training label"
-# "prior" probability is 50/50, meaning that the proportion of EU vs. US docs doesn't impact prediction (see "help(textmodel_nb)" for more information)
-
 leg_nb <- textmodel_nb(corpdfm, corpdfm$jurisdiction)
 summary(leg_nb)
-
-# estimated feature scores should be read in relation to eachother by word
-# e.g. the word "no" is 0.001373/0.001323 times more likely to indicate an EU than US doc
 ```
 
 ```{r}
-# DELETE: "Naive Bayes can only take features into consideration that occur both in the training set and the test set, but we can make the features identical using dfm_match()"
 
 # demo - DELETE
-leg_nb[["x"]] #1980 is first EU legislation
-test_df <- convert(leg_nb[["x"]], to = "data.frame") 
-head(test_df) # gives count of word by legislation (also above)
+# leg_nb[["x"]] #1980 is first EU legislation
+# test_df <- convert(leg_nb[["x"]], to = "data.frame") 
+# head(test_df) # gives count of word by legislation (also above)
 
 # extract feature scores from naive bayes output to make a new dataframe
 feature_scores <- t(as.data.frame(leg_nb[["param"]])) 
@@ -172,26 +154,30 @@ feature_scores <- feature_scores %>%
   transform(log_ratio_EU_US = log(EU / US)) %>% # create col for log of EU/US score ratio
   arrange(ratio_EU_US) # sort features by ascending EU/US score ratio
 
-# add total feature counts - ISSUE: this step is messing up the ggplot
-# feature_scores <- merge(feature_scores, total_feature_counts, by = "features")
 
 # make a new dataframe to visualize the distribution of logged score ratios
 # this can be deleted
-feature_scores_ranked <- mutate(feature_scores, rank = order(ratio_EU_US))
+feature_scores_ranked <- mutate(feature_scores, rank = order(log_ratio_EU_US))
 # plot
 ggplot(feature_scores_ranked, aes(x=log_ratio_EU_US, y = rank)) + geom_point() 
 
-# this is basically a histogram
-# it shows us that about 6000 of the words don't have much variation
-# and about 4500 don't vary at all between the documents
-# it also shows us that the dataset is biased towards EU documents
-# should we offset it to accomodate for this? 
+# this shows us that the dataset is biased towards EU words 
+
 
 
 ```
 
+This graph shows that there isn't a bias in either direction - the 0 intercepts at almost the 50% point: at the word ranked # 537 out of a total of 1090 words (537/1090 = 0.493). Recall above that the threshold was set to exclude words that occur fewer than 20 times. When this threshold was set lower in previous tests (e.g. 1, 10), the (log) EU/US ratio scores tended to favor EU legislation, so this helps elimate the bias of document imbalance. 
+
 ```{r}
-testwords <- c("environment", "human", "health", "wellbeing", "climate", "cancer", "air", "health-protection", "health-care", "healthcare", "disease", "science", "lung", "prevention", "prevent", "preventive") # see if "preventative" ever used in docs
+# add total feature counts - ISSUE: this step is messing up the ggplot so I moved it afterwards
+feature_scores <- merge(feature_scores, feature_counts_totals, by = "features")
+```
+
+The following model only includes words that occur more than once in each jurisdiction's legislation, and at least 20 times overall. Therefore, words included in the word bundles that do not reach these criteria will not be plotted. However, they are available for viewing in the `feature_counts_totals` dataframe.
+
+```{r}
+testwords <- c("environment", "human", "health", "wellbeing", "climate", "cancer", "air", "health-protection", "health-care", "healthcare", "disease", "science", "lung", "prevention", "prevent", "prevented", "preventing") # see if "preventative" ever used in docs
 
 
 #filter out the big list of word scores to just the words
@@ -211,7 +197,9 @@ testscores %>%
 ```
 
 
-```{r}
+############# IGNORE ################
+
+```{r, eval = F}
 wfish <- textmodel_wordfish(corpdfm, dir = c(15, 4)) #update based on leg_all global environment
 summary(wfish)
 # beta is the "position" of the word (ideologically speaking)
@@ -222,7 +210,6 @@ summary(wfish)
 ```
 
 
-############# IGNORE ################
 
 
 
