@@ -1,12 +1,13 @@
 ---
-title: 
-author: 
+title: Air Quality Legislation Comparative Analysis
+author: Adina Spertus-Melhus
 date: "`r Sys.Date()`"
 output: 
   html_document:
     fig_width: 7
     fig_height: 7 
 ---
+
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(collapse = TRUE, comment = NA)
@@ -18,13 +19,10 @@ library(ggplot2)
 library(ggrepel)
 library(readtext) # for getting document and their info into a data frame 
 
-#COURSE <- "~iqmr" # where we keep all the course data
-
 # similar method: http://varianceexplained.org/r/trump-tweets/
 ```
 
-## Constructing corpora from plain text files
-
+## Import text from legislation 
 
 ```{r}
 # create five column dataframe ("leg_all") of: 
@@ -56,6 +54,8 @@ corpdfm <- dfm(corp)
 # note: "/" and #s are counted as words, but this doesn't matter for our purposes
 head(corpdfm)
 ```
+
+## Prepare text data for analysis
 
 ```{r}
 # create dataframe that includes total feature (word) counts (total; EU; US)
@@ -91,7 +91,6 @@ feature_counts_totals <- temp_df_flip %>% # save for later join
 
 ```
 
-
 This section removes all words that occur fewer than once in either jurisdiction OR fewer than 20 times overall. Ensuring a word is present in both documents is necessary for running the naive bayes classifier further on. The total word requirement can also be used to set alternative thresholds. The full script will still run if you exclude this section (although the naive bayes classification will be messy.)
 
 ```{r}
@@ -109,8 +108,8 @@ remove_words <- c() # create an empty list of columns to remove (later)
 # runs slow because you shouldn't run python in R... 
 # REMINDER: if time, go back and see if there is a function for this!
 for (i in 2:ncol(temp_df)) { # for each column in the data frame
-   #if ((total_eu[i-1] < 1) | (total_us[i-1] < 1) | (total_all[i-1] < 20)) { # if word occurs less than once in either jurisdiction, or fewer than 10 times overall
-   if (total_all[i-1] < 20) { # test just total
+   if ((total_eu[i-1] < 1) | (total_us[i-1] < 1) | (total_all[i-1] < 20)) { # if word occurs less than once in either jurisdiction, or fewer than 20 times overall
+   #if (total_all[i-1] < 20) { # test just total
      remove_words <- append(remove_words, colnames(temp_df)[i]) # add word to the list of words to be removed
    } 
 }
@@ -124,8 +123,10 @@ corpdfm <- dfm(corp2, remove = remove_words)
 # maybe come back and rename this corpdfm_clean
 ```
 
+## Text Analysis
 
 This section runs the Naive-Bayes classification model. 
+
 - The "jurisdiction" is set as the "training label"
 - The "prior" probability is 50/50, which means that the proportion of EU vs. US documents in the model does not impact the prediction (see `help(textmodel_nb)` for more information).
 - In the summary output, estimated jurisdicational feature scores should be read in realtion to eachother by word. E.g., the word "no" is 0.001373/0.001323 times more likely to indicate an EU document than US document.
@@ -156,13 +157,9 @@ feature_scores <- feature_scores %>%
   arrange(ratio_EU_US) # sort features by ascending EU/US score ratio
 
 
-# make a new dataframe to visualize the distribution of logged score ratios
-# this can be deleted
 feature_scores_ranked <- mutate(feature_scores, rank = order(log_ratio_EU_US))
 # plot
 ggplot(feature_scores_ranked, aes(x=log_ratio_EU_US, y = rank)) + geom_point() 
-
-# this shows us that the dataset is biased towards EU words 
 
 
 
@@ -175,12 +172,12 @@ This graph shows that there isn't a bias in either direction - the 0 intercepts 
 feature_scores <- merge(feature_scores, feature_counts_totals, by = "features")
 ```
 
-The following model only includes words that occur more than once in each jurisdiction's legislation, and at least 20 times overall. Therefore, words included in the word bundles that do not reach these criteria will not be plotted. However, they are available for viewing in the `feature_counts_totals` dataframe.
+## Analysis Visualization
+
+The following model only includes words that occur more than once in each jurisdiction's legislation, and at least 20 times overall. (This value can be adjusted in line 121.) Therefore, words included in the word bundles that do not reach these criteria will not be plotted. However, they are available for viewing in the `feature_counts_totals` dataframe.
 
 ```{r}
-testwords <- c("environment", "human", "health", "wellbeing", "climate", "cancer", "air", "health-protection", "health-care", "healthcare", "disease", "science", "lung", "prevention", "prevent", "prevented", "preventing") # see if "preventative" ever used in docs
-
-# look up the counts for each of these words
+# allocate word lists to plot tendency scores
 
 econ_bundle <- c(
   "economy",
@@ -258,9 +255,13 @@ other_bundle <- c(
   "resources" 
 )
 
+# based on top scores for above word bundles
+demowords <- c("vegetation", "precautions", "population", "ecosystems", "efficiency", "human", "health", "air", "costs", "marginal", "prevention", "trade", "resources", "cancer", "commerce", "fiscal", "business") 
+
+
 #filter out the big list of word scores to just the words
-#that we selected in "testwords"
-test_bundle_plot <- arrange(filter(feature_scores, features %in% testwords),
+#that we selected in the relevant bundle, and plot
+demo_plot <- arrange(filter(feature_scores, features %in% demowords),
                      log_ratio_EU_US)
 
 econ_bundle_plot <- arrange(filter(feature_scores, features %in% econ_bundle),
@@ -278,13 +279,7 @@ eco_bundle_plot <- arrange(filter(feature_scores, features %in% eco_bundle),
 other_bundle_plot <- arrange(filter(feature_scores, features %in% other_bundle),
                      log_ratio_EU_US)
 
-test_bundle_plot %>%
-  mutate(features = reorder(features, log_ratio_EU_US)) %>%
-  ggplot(aes(features, log_ratio_EU_US, fill = log_ratio_EU_US < 0)) +
-  geom_bar(stat = "identity") +
-  coord_flip() +
-  labs (title = "test bundle", x = "Words found in legislation", y = "EU / US log ratio") +
-  scale_fill_manual(name = "Word is more suggestive of", labels = c("EU Legislation", "US Legislation"), values = c("light blue", "coral"))
+# demo bundle plot below
 
 econ_bundle_plot %>%
   mutate(features = reorder(features, log_ratio_EU_US)) %>%
@@ -332,109 +327,18 @@ other_bundle_plot %>%
 
 ```
 
+Note: This graph will appear different than the one in the associated IASS blog post. This is because that graph was created with a frequency threshold of 10 instead of 20. You can change the threshold in line 121 to reproduce the results. 
 
 ```{r}
-testscores %>%
+demo_plot %>%
   mutate(features = reorder(features, log_ratio_EU_US)) %>%
   ggplot(aes(features, log_ratio_EU_US, fill = log_ratio_EU_US < 0)) +
   geom_bar(stat = "identity") +
   coord_flip() +
-  labs (title = "test bundle", x = "Words found in legislation", y = "EU / US log ratio") +
-  scale_fill_manual(name = "Word is more suggestive of", labels = c("EU Legislation", "US Legislation"), values = c("light blue", "coral"))
+  labs (title = "Selection of Words with Highest Tendencies*", caption = "*Note: \"air\" and \"health\" are included for illustrative purposes despite lower log ratio scores.", x = "Words found in legislation", y = "EU / US log ratio") +
+  scale_fill_manual(name = "Word is more suggestive of", labels = c("EU Legislation", "US Legislation"), values = c("light blue", "coral")) +
+  theme(plot.caption = element_text(hjust = 0, face = "italic"))
 ```
 
 
-
-
-############# IGNORE ################
-
-```{r, eval = F}
-wfish <- textmodel_wordfish(corpdfm, dir = c(15, 4)) #update based on leg_all global environment
-summary(wfish)
-# beta is the "position" of the word (ideologically speaking)
-# you don't know which direction beta goes,  
-# (can guess that "rights" is R) so we figure this out next
-# psi gives you frequency
-
-```
-
-
-
-
-
-```{r, eval = F}
-preds  <- predict(wfish, interval = "confidence")
-
-# grab the (only) internal element 'fit' and make it a data frame
-preds <- as_tibble(preds$fit)
-#bind the columns together and give an ordering
-preds_dv <- mutate(bind_cols(docvars(corpdfm), preds),
-                   leg_order = rank(fit)) # add a left to right ordering
-
- #gets rid of gray ggplot background
-theme_set(theme_minimal())
-
-#y is speaker order, color by party
-ggplot(preds_dv, aes(x = fit, xmin = lwr, xmax = upr,
-                     y = leg_order, col = jurisdiction)) + #can also do year
-  geom_point() +
-  geom_errorbarh(height = 0) +
-  #scale_color_manual(values = c("blue", "red")) +
-  scale_y_continuous(labels = preds_dv$doc_id,
-                     minor_breaks = NULL,
-                     breaks = preds_dv$leg_order) +
-  labs(x = "Sorting", y = "Legislation") +
-  ggtitle("Air Legislation",
-          subtitle = "Sorted based on legislation text")
-```
-
-```{r, eval = F}
-#position is the only thing that the model is looking at
-
-#let's find out why feinstein is -2... 
-#features means words; calling beta the score and psi 
-# the offset (ie word frequency) for help
-wscores <- tibble(word = wfish$features,
-                  score = wfish$beta,
-                  offset = wfish$psi)
-
-#testwords <- c("environment", "pollution", "wellbeing", "human", "health", "climate", "air", "proportionality", "federal", "member", "cancer", "motor", "nature", "smog", "acid", "rain", "vegetation", "agriculture", "ozone", "luxembourg", "smoke", "prevention", "preventive", "congress", "economic", "fossil-fuel")
-
-
-testwords <- c("environment", "human", "health", "wellbeing", "climate", "cancer", "air", "health-protection", "health-care", "healthcare", "disease", "science", "lung", "prevention", "prevent", "preventive")
-
-
-#filter out the big list of word scores to just the words
-#that we selected in "testwords"
-testscores <- arrange(filter(wscores, word %in% testwords),
-                      score)
-testscores
-# "score" brings position up or down
-
-
-
-```
-
-```{r, eval = F}
-ggplot(wscores, aes(score, offset, label = word)) +
-  geom_point(color = "grey", alpha = 0.2) +
-  geom_text_repel(data = testscores, col = "black") +
-  geom_point(data = testscores) +
-  labs(x = "Word prediction score (rougly speaking: EU to left, US to the right)", y = "Offset parameter (~frequency)") +
-  ggtitle("Estimated Word Positions for Selected Debate Vocabulary",
-          subtitle = "Note: Offset parameter is roughly proportional to word frequency")
-# can see the layers at the bottom for words only used 1 or 2 times
-# high frequency words are more in the middle
-# as frequencies get lower, they have more of a pulling effect
-# aka the eiffel tower plot
-
-
-#show me in this corpurs, every instance of the word air
-#plus or minus 15 words (so i can see how used) and who said it
-# kwic(corp, "air", window = 15)
-# only two instances from boxer. 
-# drag the console larger to see whole script
-
-
-```
 
